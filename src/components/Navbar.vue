@@ -13,7 +13,7 @@ const menuOpen = () => {
 </script>
 
 <template>
-  <nav class="bg-gray-900 text-gray-100 py-3.5 px-6 shadow md:flex justify-between items-center">
+  <nav class="fixed top-0 w-full z-10 bg-gray-900 text-gray-100 py-3.5 px-6 shadow md:flex justify-between items-center">
     <div class="flex items-center cursor-pointer">
       <span class="text-green-500 text-xl mr-1">
         <IconPokeball />
