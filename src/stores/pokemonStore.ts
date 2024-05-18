@@ -11,7 +11,7 @@ const TEAM_MAX_POKEMON = 6;
 export const usePokemonStore = defineStore('pokemonStore', () => {
   const pokemons = ref<IPokemon[]>([])
   const offsetPage = ref(ITEMS_PER_PAGE)
-  const pokemonTeam = ref<ISelectedPokemon[]>(Array(6).fill(undefined).map((v, i) => ({name: "??????", id: i})));
+  const pokemonTeam = ref<ISelectedPokemon[]>(Array(TEAM_MAX_POKEMON).fill(undefined).map((v, i) => ({name: "??????", id: i})));
   const pokemonTeamDetail = ref<IPokemonDetail[]>([]);
 
   const total = computed(() => pokemonTeam.value.filter(item => item.name !== "??????").length)
@@ -57,9 +57,9 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
     if (pokemonTeam.value.some(item => item.name == pokemon.name)) {
       return
     }
-    pokemonTeam.value.push(pokemon)
-    if(pokemonTeam.value.length >= TEAM_MAX_POKEMON) {
-      pokemonTeam.value.shift()
+    const idx = pokemonTeam.value.findIndex((item) => item.name === "??????")
+    if (idx !== -1) {
+      pokemonTeam.value[idx] = {...pokemon}
     }
   }
 
