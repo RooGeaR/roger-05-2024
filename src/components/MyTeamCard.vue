@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
 import type { IType, IStat } from "@/types/pokemon"
+import IconClose from './icons/IconClose.vue';
+import { usePokemonStore } from '@/stores/pokemonStore';
+
 const statColors = [
   "blue",
   "red",
@@ -10,14 +13,22 @@ const statColors = [
   "purple"
 ]
 defineProps<{ name: string, id: number, types: IType[], stats: IStat[] }>()
+const { removePokemonTeam } = usePokemonStore()
 const router = useRouter()
 const handleClick = (id: number) => {
   router.push({ name: "teamId", params: { id }})
+}
+
+const handleRemove = (id: number) => {
+  removePokemonTeam(id)
 }
 </script>
 
 <template>
   <section class='group hover:shadow-lg relative h-full w-full max-w-96 pt-3 pr-2 pb-2 pl-3 overflow-hidden border border-gray-200 rounded-lg shadow cursor-pointer' @click="handleClick(id)">
+    <div class="hover:text-red-500 absolute left-[-5px] top-[-1px] rounded-lg" @click.stop="handleRemove(id)">
+      <iconClose />
+    </div>
     <h2 class='capitalize font-bold tracking-tighter md:text-lg text-sm text-gray-900'>
       {{name}}
     </h2>

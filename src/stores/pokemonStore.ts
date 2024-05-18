@@ -64,7 +64,7 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
   }
 
   const getPokemonTeamDetail = async () => {
-    const promises = pokemonTeam.value.map(async (pokemon) => {
+    const promises = pokemonTeam.value.filter(item => item.name !== "??????").map(async (pokemon) => {
       return await getPokemon(pokemon.id);
     });
     const results = await Promise.all(promises);
@@ -75,5 +75,11 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
     return pokemonTeamDetail.value.find(pokemon => pokemon.id === id)
   }
 
-  return { pokemons, pokemonTeam, pokemonTeamDetail, total, getPokemons, selectPokemon, getPokemon, loadMore, getPokemonTeamDetail, getPokemonTeam }
+  const removePokemonTeam = (id: number) => {
+    pokemonTeamDetail.value = pokemonTeamDetail.value.filter(pokemon => pokemon.id !== id)
+    pokemonTeam.value = pokemonTeam.value.filter(pokemon => pokemon.id !== id)
+    pokemonTeam.value.push({name: "??????", id: pokemonTeam.value.length + 1})
+  }
+
+  return { pokemons, pokemonTeam, pokemonTeamDetail, total, getPokemons, selectPokemon, getPokemon, loadMore, getPokemonTeamDetail, getPokemonTeam, removePokemonTeam }
 })
