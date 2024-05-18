@@ -34,4 +34,6 @@ export interface IPokemonDetail {
   types: IType[];
   stats: IStat[];
   cries: ICries;
+  height: number;
+  weight: number;
 }

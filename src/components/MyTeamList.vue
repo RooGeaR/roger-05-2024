@@ -2,15 +2,10 @@
 import { usePokemonStore } from '@/stores/pokemonStore';
 import MyTeamCard from './MyTeamCard.vue';
 import { storeToRefs } from 'pinia';
-import { useRouter } from 'vue-router';
+
 
 const pokemonStore = usePokemonStore()
 const { pokemonTeamDetail } = storeToRefs(pokemonStore)
-const router = useRouter()
-
-const goToTeam = () => {
-  router.push({ name: "team" })
-}
 </script>
 
 <template>

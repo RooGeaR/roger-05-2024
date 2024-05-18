@@ -17,7 +17,7 @@ const handleClick = (id: number) => {
 </script>
 
 <template>
-  <section class='group hover:shadow-lg relative h-full w-full max-w-96 max-w-pt-3 pr-0 pb-2 pl-3 overflow-hidden border border-gray-200 rounded-lg shadow cursor-pointer' @click="handleClick(id)">
+  <section class='group hover:shadow-lg relative h-full w-full max-w-96 pt-3 pr-2 pb-2 pl-3 overflow-hidden border border-gray-200 rounded-lg shadow cursor-pointer' @click="handleClick(id)">
     <h2 class='capitalize font-bold tracking-tighter md:text-lg text-sm text-gray-900'>
       {{name}}
     </h2>

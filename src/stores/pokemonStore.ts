@@ -71,5 +71,9 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
     pokemonTeamDetail.value = results as IPokemonDetail[]
   }
 
-  return { pokemons, pokemonTeam, pokemonTeamDetail, total, getPokemons, selectPokemon, getPokemon, loadMore, getPokemonTeamDetail }
+  const getPokemonTeam = (id: number) => {
+    return pokemonTeamDetail.value.find(pokemon => pokemon.id === id)
+  }
+
+  return { pokemons, pokemonTeam, pokemonTeamDetail, total, getPokemons, selectPokemon, getPokemon, loadMore, getPokemonTeamDetail, getPokemonTeam }
 })
