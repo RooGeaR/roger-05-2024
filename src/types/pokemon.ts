@@ -12,13 +12,13 @@ export interface ISelectedPokemon {
   name: string;
 }
 
-interface IStat {
+export interface IStat {
   base_stat: number;
   effort: number;
   stat: IBaseItem
 }
 
-interface IType {
+export interface IType {
   slot: number;
   type: IBaseItem;
 }

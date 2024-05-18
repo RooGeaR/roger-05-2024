@@ -5,7 +5,7 @@ import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
 
 const pokemonStore = usePokemonStore()
-const { pokemonTeam } = storeToRefs(pokemonStore)
+const { pokemonTeamDetail } = storeToRefs(pokemonStore)
 const router = useRouter()
 
 const goToTeam = () => {
@@ -14,11 +14,13 @@ const goToTeam = () => {
 </script>
 
 <template>
-  <section class='border rounded-lg shadow grid grid-cols-2 xl:grid-cols-6 md:grid-cols-3 justify-items-center gap-x-2 md:gap-x-4 md:gap-y-5 gap-y-2 md:w-11/12 w-full mx-auto py-10 z-10 cursor-pointer' @click="goToTeam">
+  <section class='grid grid-cols-2 xl:grid-cols-3 md:grid-cols-3 justify-items-center gap-x-2 md:gap-x-4 md:gap-y-5 gap-y-2 md:w-11/12 w-full mx-auto py-10 z-10 cursor-pointer'>
     <MyTeamCard
-      v-for="(pokemon, idx) in pokemonTeam"
+      v-for="(pokemon, idx) in pokemonTeamDetail"
       :key="idx"
       :name="pokemon.name"
+      :types="pokemon.types"
+      :stats="pokemon.stats"
       :id="pokemon.id"
     />
   </section>

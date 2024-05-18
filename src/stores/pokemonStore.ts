@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { IPokemon, ISelectedPokemon } from '@/types/pokemon';
+import type { IPokemon, IPokemonDetail, ISelectedPokemon } from '@/types/pokemon';
 import axios from 'axios';
 
 const baseUrl = "https://pokeapi.co/api/v2/pokemon";
@@ -12,6 +12,7 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
   const pokemons = ref<IPokemon[]>([])
   const offsetPage = ref(ITEMS_PER_PAGE)
   const pokemonTeam = ref<ISelectedPokemon[]>(Array(6).fill(undefined).map((v, i) => ({name: "??????", id: i})));
+  const pokemonTeamDetail = ref<IPokemonDetail[]>([]);
 
   const total = computed(() => pokemonTeam.value.filter(item => item.name !== "??????").length)
 
@@ -46,14 +47,14 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
   const getPokemon = async (id: number) => {
     try {
       const response = await axios.get(`${baseUrl}/${id}`);
-      pokemons.value = response.data.results.map((item: IPokemon) => ({...item, id: Number(item.url.substring(item.url.lastIndexOf("/") + 1))}));
+      return response.data as IPokemonDetail;
     } catch (e) {
       console.log(e)
     }
   };
 
   const selectPokemon = (pokemon: ISelectedPokemon) => {
-    if (pokemonTeam.value.some(item => item.id == pokemon.id)) {
+    if (pokemonTeam.value.some(item => item.name == pokemon.name)) {
       return
     }
     pokemonTeam.value.push(pokemon)
@@ -62,5 +63,13 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
     }
   }
 
-  return { pokemons, pokemonTeam, getPokemons, selectPokemon, getPokemon, loadMore, total }
+  const getPokemonTeamDetail = async () => {
+    const promises = pokemonTeam.value.map(async (pokemon) => {
+      return await getPokemon(pokemon.id);
+    });
+    const results = await Promise.all(promises);
+    pokemonTeamDetail.value = results as IPokemonDetail[]
+  }
+
+  return { pokemons, pokemonTeam, pokemonTeamDetail, total, getPokemons, selectPokemon, getPokemon, loadMore, getPokemonTeamDetail }
 })
