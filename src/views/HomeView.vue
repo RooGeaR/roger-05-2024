@@ -23,10 +23,7 @@ onMounted(() => {
  })
 
  const handleScroll = (e: Event) => {
-  console.log("scroll")
   let element = scrollComponent.value
-  console.log("element", element?.getBoundingClientRect())
-  console.log("wiindow", window.innerHeight)
   if (element?.getBoundingClientRect().bottom <= window.innerHeight) {
     loadMore()
   }

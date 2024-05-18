@@ -53,6 +53,9 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
   };
 
   const selectPokemon = (pokemon: ISelectedPokemon) => {
+    if (pokemonTeam.value.some(item => item.id == pokemon.id)) {
+      return
+    }
     pokemonTeam.value.push(pokemon)
     if(pokemonTeam.value.length >= TEAM_MAX_POKEMON) {
       pokemonTeam.value.shift()
