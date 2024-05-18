@@ -5,7 +5,6 @@ import { storeToRefs } from 'pinia';
 
 const pokemonStore = usePokemonStore()
 const { pokemons } = storeToRefs(pokemonStore)
-console.log(pokemons)
 </script>
 
 <template>
