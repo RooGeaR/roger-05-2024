@@ -4,7 +4,7 @@ import Navbar from './components/Navbar.vue'
 </script>
 
 <template>
-  <header>
+  <header class="mt-20">
     <Navbar />
   </header>
 

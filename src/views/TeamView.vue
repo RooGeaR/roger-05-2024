@@ -1,7 +1,9 @@
+<script setup lang="ts">
+import MyTeamContainer from '@/components/MyTeamContainer.vue';
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is my team</h1>
-  </div>
+  <MyTeamContainer />
 </template>
 
 <style>

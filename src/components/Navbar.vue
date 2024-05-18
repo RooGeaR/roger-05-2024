@@ -4,7 +4,11 @@ import { RouterLink } from 'vue-router'
 import IconPokeball from "./icons/IconPokeball.vue";
 import IconMenuLeft from "./icons/IconMenuLeft.vue";
 import IconClose from "./icons/IconClose.vue";
+import { usePokemonStore } from '@/stores/pokemonStore';
+import { storeToRefs } from "pinia";
 
+const pokemonStore = usePokemonStore()
+const { total } = storeToRefs(pokemonStore)
 let open = ref(false);
 
 const menuOpen = () => {
@@ -29,7 +33,7 @@ const menuOpen = () => {
         <RouterLink to="/" class="text-xl hover:text-green-500">Home</RouterLink>
       </li>
       <li class="md:mx-4">
-        <RouterLink to="/team" class="text-xl hover:text-green-500">Team</RouterLink>
+        <RouterLink to="/team" class="text-xl hover:text-green-500">Team ({{ total }})</RouterLink>
       </li>
     </ul>
   </nav>

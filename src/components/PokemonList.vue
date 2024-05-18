@@ -5,6 +5,7 @@ import { storeToRefs } from 'pinia';
 
 const pokemonStore = usePokemonStore()
 const { pokemons } = storeToRefs(pokemonStore)
+console.log(pokemons)
 </script>
 
 <template>
@@ -13,7 +14,7 @@ const { pokemons } = storeToRefs(pokemonStore)
       v-for="(pokemon, idx) in pokemons"
       :key="idx"
       :name="pokemon.name"
-      :id="String(idx+1)"
+      :id="pokemon.id"
     />
   </section>
 </template>
