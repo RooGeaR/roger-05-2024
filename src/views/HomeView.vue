@@ -32,9 +32,10 @@ onMounted(() => {
 
 <template>
   <div ref="scrollComponent">
-    <Title>Tu equipo</Title>
     <TeamContainer />
-    <Title>Tus opciones</Title>
-    <PokedexContainer />
+    <div class=" top-96 absolute w-full">
+      <Title>Tus opciones</Title>
+      <PokedexContainer />
+    </div>
   </div>
 </template>
