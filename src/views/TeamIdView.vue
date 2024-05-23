@@ -14,6 +14,7 @@ const pokemon = getPokemonTeam(Number(route.params.id))
       :name="pokemon.name"
       :types="pokemon.types"
       :stats="pokemon.stats"
+      :species="pokemon.species"
       :id="pokemon.id"
       :height="pokemon.height"
       :weight="pokemon.weight"

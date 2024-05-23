@@ -3,15 +3,8 @@ import { useRouter } from 'vue-router';
 import type { IType, IStat } from "@/types/pokemon"
 import IconClose from './icons/IconClose.vue';
 import { usePokemonStore } from '@/stores/pokemonStore';
+import { statColors } from '@/common/constants';
 
-const statColors = [
-  "blue",
-  "red",
-  "green",
-  "yellow",
-  "indigo",
-  "purple"
-]
 defineProps<{ name: string, id: number, types: IType[], stats: IStat[] }>()
 const { removePokemonTeam } = usePokemonStore()
 const router = useRouter()
@@ -53,9 +46,9 @@ const handleRemove = (id: number) => {
       v-for="(stat, idx) in stats"
       :key="idx"
     >
-      <div class="text-base font-medium mb-1 capitalize" :class="{[`text-${statColors[idx]}-700`]:true}">{{ stat.stat.name }}</div>
+      <div :class="`text-base text-${statColors[idx]}-700 font-medium mb-1 capitalize`">{{ stat.stat.name }}</div>
       <div class="w-full bg-gray-200 rounded-full h-2.5">
-        <div class="h-2.5 rounded-full" :class="{[`bg-${statColors[idx]}-600`]:true}" :style="{width: `${(stat.base_stat * 100)/200}%`}"></div>
+        <div :class="`h-2.5 bg-${statColors[idx]}-600 rounded-full`" :style="{width: `${(stat.base_stat * 100)/200}%`}"></div>
       </div>
     </div>
   </section>
