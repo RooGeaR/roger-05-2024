@@ -4,7 +4,7 @@ import type { IPokemon, IPokemonDetail, ISelectedPokemon, ISpecie } from '@/type
 import axios from 'axios'
 
 const baseUrl = 'https://pokeapi.co/api/v2/pokemon'
-const POKEDEX_LIMIT = 150
+const POKEDEX_LIMIT = 151
 export const ITEMS_PER_PAGE = 25
 const TEAM_MAX_POKEMON = 6
 
@@ -42,7 +42,11 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
   const loadMore = async () => {
     const total = pokemons.value.length;
     if (total < POKEDEX_LIMIT) {
-      const newPokemons = await getPokemons(ITEMS_PER_PAGE, total)
+      let itemsPerPage = ITEMS_PER_PAGE;
+      if (total === 150) {
+        itemsPerPage = 1
+      }
+      const newPokemons = await getPokemons(itemsPerPage, total)
       pokemons.value.push(...newPokemons)
     }
   }
