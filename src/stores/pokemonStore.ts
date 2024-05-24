@@ -10,7 +10,6 @@ const TEAM_MAX_POKEMON = 6
 
 export const usePokemonStore = defineStore('pokemonStore', () => {
   const pokemons = ref<IPokemon[]>([])
-  const offsetPage = ref(ITEMS_PER_PAGE)
   const pokemonTeam = ref<ISelectedPokemon[]>(
     Array(TEAM_MAX_POKEMON)
       .fill(undefined)
@@ -41,9 +40,9 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
   }
 
   const loadMore = async () => {
-    if (pokemons.value.length < POKEDEX_LIMIT) {
-      const newPokemons = await getPokemons(ITEMS_PER_PAGE, offsetPage.value)
-      offsetPage.value += ITEMS_PER_PAGE
+    const total = pokemons.value.length;
+    if (total < POKEDEX_LIMIT) {
+      const newPokemons = await getPokemons(ITEMS_PER_PAGE, total)
       pokemons.value.push(...newPokemons)
     }
   }
