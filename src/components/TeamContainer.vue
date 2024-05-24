@@ -5,7 +5,7 @@ import Title from './Title.vue';
 
 <template>
   <main class="fixed z-10 px-2 w-full mx-auto pt-2 pb-2">
-    <Title class="bg-transparent">Tu equipo</Title>
+    <Title class="bg-transparent">Your Team</Title>
     <TeamList />
   </main>
 </template>

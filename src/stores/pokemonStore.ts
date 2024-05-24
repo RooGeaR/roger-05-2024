@@ -1,6 +1,6 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { IPokemon, IPokemonDetail, ISelectedPokemon, ISpecie } from '@/types/pokemon'
+import type { IPokemon, IPokemonDetail, ISelectedPokemon, IBaseItem, IFlavorTextEntry } from '@/types/pokemon'
 import axios from 'axios'
 
 const baseUrl = 'https://pokeapi.co/api/v2/pokemon'
@@ -93,7 +93,7 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
     return pokemonTeamDetail.value.find((pokemon) => pokemon.id === id)
   }
 
-  const getPokemonDetail = async (specie: ISpecie) => {
+  const getPokemonDetail = async (specie: IBaseItem) => {
     const pokemonSpecie = await getPokemonData(specie.url)
     const { chain } = await getPokemonData(pokemonSpecie.evolution_chain.url)
     const evolutionChain: IPokemon[] = []
@@ -110,7 +110,8 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
       evolutionChain.push(evol3)
     }
 
-    const description = pokemonSpecie.flavor_text_entries[0].flavor_text
+    const findEnglish = pokemonSpecie.flavor_text_entries.find((item: IFlavorTextEntry) => item.language.name === "en")
+    const description = findEnglish.flavor_text
     return { description, evolutionChain }
   }
 

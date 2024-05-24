@@ -1,4 +1,4 @@
-interface IBaseItem {
+export interface IBaseItem {
   name: string;
   url: string;
 }
@@ -28,11 +28,6 @@ interface ICries {
   legacy: string;
 }
 
-export interface ISpecie {
-  name: string;
-  url: string;
-}
-
 export interface IPokemonDetail {
   id: number;
   name: string;
@@ -41,5 +36,10 @@ export interface IPokemonDetail {
   cries: ICries;
   height: number;
   weight: number;
-  species: ISpecie;
+  species: IBaseItem;
+}
+
+export interface IFlavorTextEntry {
+  flavor_text: string;
+  language: IBaseItem;
 }

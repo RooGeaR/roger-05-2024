@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { IType, IStat, ISpecie } from "@/types/pokemon"
+import type { IType, IStat, IBaseItem } from "@/types/pokemon"
 import { statColors } from '@/common/constants';
 import { usePokemonStore } from '@/stores/pokemonStore';
 import { onMounted, ref } from "vue";
 
 const pokemonDetail = ref()
 const { getPokemonDetail } = usePokemonStore()
-const props = defineProps<{ name: string, id: number, types: IType[], stats: IStat[], species: ISpecie, weight: number, height: number }>()
+const props = defineProps<{ name: string, id: number, types: IType[], stats: IStat[], species: IBaseItem, weight: number, height: number }>()
 
 onMounted(async () => {
   pokemonDetail.value = await getPokemonDetail(props.species)
@@ -38,11 +38,11 @@ onMounted(async () => {
     </figure>
     <div class="flex items-center justify-around">
       <div>
-         <h1 class="md:text-base text-xs font-bold">Peso</h1>
+         <h1 class="md:text-base text-xs font-bold">Weight</h1>
          <span class="md:text-base text-xs">{{ weight/10 }} kg</span> 
       </div>
       <div>
-         <h1 class="md:text-base text-xs font-bold">Altura</h1>
+         <h1 class="md:text-base text-xs font-bold">Height          </h1>
          <span class="md:text-base text-xs">{{ height/10 }} m</span> 
       </div>
     </div>
@@ -59,7 +59,7 @@ onMounted(async () => {
       </div>
     </div>
     <div class="mt-3">
-      <h1 class="md:text-xl text-base font-bold text-center">Cadena evolutiva</h1>
+      <h1 class="md:text-xl text-base font-bold text-center">Evolution Chain</h1>
       <div class="flex justify-around items-center">
         <div class='w-1/4 relative' v-for="pokemon in pokemonDetail?.evolutionChain" :key="pokemon.id">
           <img class='relative h-auto right-1 w-full'
