@@ -104,11 +104,11 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
     if (evol1) {
       evolutionChain.push(evol1)
     }
-    const evol2: IPokemon | undefined = await getPokemonEvolChain(chain.evolves_to[0].species?.name)
+    const evol2: IPokemon | undefined = await getPokemonEvolChain(chain.evolves_to[0]?.species.name)
     if (evol2) {
       evolutionChain.push(evol2)
     }
-    const evol3: IPokemon | undefined = await getPokemonEvolChain(chain.evolves_to[0].evolves_to[0]?.species.name)
+    const evol3: IPokemon | undefined = await getPokemonEvolChain(chain.evolves_to[0]?.evolves_to[0]?.species.name)
     if (evol3) {
       evolutionChain.push(evol3)
     }
