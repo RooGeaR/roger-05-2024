@@ -107,14 +107,14 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
       evolutionChain.push(evol3)
     }
 
-    const descrition = pokemonSpecie.flavor_text_entries[0].flavor_text
-    return { descrition, evolutionChain }
+    const description = pokemonSpecie.flavor_text_entries[0].flavor_text
+    return { description, evolutionChain }
   }
 
   const getPokemonEvolChain = async (name: string) => {
     const evolPokemon = pokemons.value.find((pokemon) => pokemon.name === name)
 
-    if (!evolPokemon) {
+    if (!evolPokemon && name) {
       const evolInfo = await getPokemon(name)
       if (evolInfo) {
         return { id: evolInfo.id, name: evolInfo.name, url: `${baseUrl}/${evolInfo.id}` }

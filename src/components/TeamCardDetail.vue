@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IType, IStat, ISpecie, IPokemon } from "@/types/pokemon"
+import type { IType, IStat, ISpecie } from "@/types/pokemon"
 import { statColors } from '@/common/constants';
 import { usePokemonStore } from '@/stores/pokemonStore';
 import { onMounted, ref } from "vue";
@@ -47,7 +47,7 @@ onMounted(async () => {
       </div>
     </div>
     <div class="text-center text-lg md:text-xl mt-3">
-      {{ pokemonDetail.description }}
+      {{ pokemonDetail?.description }}
     </div>
     <div
       v-for="(stat, idx) in stats"
@@ -61,7 +61,7 @@ onMounted(async () => {
     <div class="mt-3">
       <h1 class="md:text-xl text-base font-bold text-center">Cadena evolutiva</h1>
       <div class="flex justify-around items-center">
-        <div class='w-1/4 relative' v-for="pokemon in pokemonDetail.evolutionChain" :key="pokemon.id">
+        <div class='w-1/4 relative' v-for="pokemon in pokemonDetail?.evolutionChain" :key="pokemon.id">
           <img class='relative h-auto right-1 w-full'
             :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`"
             :alt="pokemon.name" />
