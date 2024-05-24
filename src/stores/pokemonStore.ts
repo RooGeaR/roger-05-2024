@@ -76,6 +76,9 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
     const idx = pokemonTeam.value.findIndex((item) => item.name === '??????')
     if (idx !== -1) {
       pokemonTeam.value[idx] = { ...pokemon }
+    } else if (pokemonTeam.value.length >= TEAM_MAX_POKEMON) {
+      pokemonTeam.value.push(pokemon)
+      pokemonTeam.value.shift()
     }
   }
 
