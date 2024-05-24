@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type { IType, IStat, IBaseItem } from "@/types/pokemon"
-import { statColors } from '@/common/constants';
+import { statColors, colors } from '@/common/constants';
 import { usePokemonStore } from '@/stores/pokemonStore';
 import { onMounted, ref } from "vue";
 
 const pokemonDetail = ref()
 const { getPokemonDetail } = usePokemonStore()
 const props = defineProps<{ name: string, id: number, types: IType[], stats: IStat[], species: IBaseItem, weight: number, height: number }>()
+const color = props.types[0].type?.name || "unknown"
 
 onMounted(async () => {
   pokemonDetail.value = await getPokemonDetail(props.species)
@@ -15,7 +16,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section class='group hover:shadow-lg relative h-full w-full max-w-2xl pt-6 px-6 pb-2 overflow-hidden border border-gray-200 rounded-lg shadow cursor-pointer'>
+  <section :style="{backgroundColor: colors[color as keyof typeof colors]}" class='group hover:shadow-lg relative h-full w-full max-w-2xl pt-6 px-6 pb-2 overflow-hidden border border-gray-200 rounded-lg shadow cursor-pointer'>
     <h2 class='capitalize font-bold tracking-tighter md:text-xl text-lg text-gray-900'>
       {{name}}
     </h2>
