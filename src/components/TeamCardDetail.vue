@@ -37,11 +37,11 @@ onMounted(async () => {
       </div>
     </figure>
     <div class="flex items-center justify-around">
-      <div>
+      <div class="text-center">
          <h1 class="md:text-base text-xs font-bold">Weight</h1>
          <span class="md:text-base text-xs">{{ weight/10 }} kg</span> 
       </div>
-      <div>
+      <div class="text-center">
          <h1 class="md:text-base text-xs font-bold">Height          </h1>
          <span class="md:text-base text-xs">{{ height/10 }} m</span> 
       </div>
@@ -61,7 +61,7 @@ onMounted(async () => {
     <div class="mt-3">
       <h1 class="md:text-xl text-base font-bold text-center">Evolution Chain</h1>
       <div class="flex justify-around items-center">
-        <div class='w-1/4 relative' v-for="pokemon in pokemonDetail?.evolutionChain" :key="pokemon.id">
+        <div class='w-1/4 relative text-center' v-for="pokemon in pokemonDetail?.evolutionChain" :key="pokemon.id">
           <img class='relative h-auto right-1 w-full'
             :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`"
             :alt="pokemon.name" />
