@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usePokemonStore } from '@/stores/pokemonStore';
 import type { ISelectedPokemon } from '@/types/pokemon';
-defineProps<{ name: string, id: number }>()
+defineProps<{ name: string, id: number, isSelected?: boolean }>()
 
 const { selectPokemon } = usePokemonStore()
 const handleClick = (pokemon: ISelectedPokemon) => {
@@ -10,7 +10,7 @@ const handleClick = (pokemon: ISelectedPokemon) => {
 </script>
 
 <template>
-  <section class='group hover:shadow-lg relative h-full w-full max-h-36 max-w-56 pt-3 pr-0 pb-2 pl-3 overflow-hidden border border-gray-200 rounded-lg shadow cursor-pointer' @click="handleClick({id, name})">
+  <section :class="{[`border-green-500`]:isSelected}" class='group hover:shadow-lg relative h-full w-full max-h-36 max-w-56 pt-3 pr-0 pb-2 pl-3 overflow-hidden border border-gray-200 rounded-lg shadow cursor-pointer' @click="handleClick({id, name})">
     <h2 class='capitalize font-bold tracking-tighter md:text-lg text-sm text-gray-900'>
       {{name}}
     </h2>

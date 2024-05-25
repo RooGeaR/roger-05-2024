@@ -5,6 +5,7 @@ export interface IBaseItem {
 
 export interface IPokemon extends IBaseItem {
   id: number;
+  isSelected?: boolean;
 }
 
 export interface ISelectedPokemon {

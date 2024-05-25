@@ -1,6 +1,7 @@
 import { statColors } from './src/common/constants';
 const safelist = [
   ...statColors.flatMap((c) => [`text-${c}-700`, `bg-${c}-600`]),
+  'border-green-500'
 ]
 /** @type {import('tailwindcss').Config} */
 export default {

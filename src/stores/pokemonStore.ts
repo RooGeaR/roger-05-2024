@@ -75,10 +75,20 @@ export const usePokemonStore = defineStore('pokemonStore', () => {
     }
     const idx = pokemonTeam.value.findIndex((item) => item.name === '??????')
     if (idx !== -1) {
+      changeSelectedPokemon(pokemon.id)
       pokemonTeam.value[idx] = { ...pokemon }
     } else if (pokemonTeam.value.length >= TEAM_MAX_POKEMON) {
       pokemonTeam.value.push(pokemon)
-      pokemonTeam.value.shift()
+      changeSelectedPokemon(pokemon.id)
+      const pokemonShift = pokemonTeam.value.shift()
+      changeSelectedPokemon(pokemonShift?.id)
+    }
+  }
+
+  const changeSelectedPokemon = (id: number | undefined) => {
+    const idx = pokemons.value.findIndex((item) => item.id === id)
+    if (idx !== -1) {
+      pokemons.value[idx].isSelected = !pokemons.value[idx].isSelected
     }
   }
 

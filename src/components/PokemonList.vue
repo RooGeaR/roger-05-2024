@@ -14,6 +14,7 @@ const { pokemons } = storeToRefs(pokemonStore)
       :key="idx"
       :name="pokemon.name"
       :id="pokemon.id"
+      :isSelected="pokemon.isSelected"
     />
   </section>
 </template>
